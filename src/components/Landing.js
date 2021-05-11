@@ -1,53 +1,48 @@
-import { Container, Col, Form, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import { getCenterByPincode } from "../apis/Api.js";
 
 const Landing = () => {
-  const [pincode, setPincode] = useState(0);
+  const [pincode, setPincode] = useState("");
 
   const handleSubmit = () => {
     getCenterByPincode(pincode);
-  };
-
-  const handlePincodeInput = (e) => {
-    console.log(e.target.value);
-    setPincode(e.target.value);
-  };
-
-  useEffect(() => {
-    getCenterByPincode(400058);
     setInterval(() => {
       getCenterByPincode(400058);
     }, 5000);
-  });
+  };
+
+  const handlePincodeInput = (e) => {
+    setPincode(e.target.value);
+  };
 
   return (
     <Container fluid>
-      <Col>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Pincode</Form.Label>
-            <Form.Control type="text" placeholder="Enter pincode" />
-            <Form.Text
-              className="text-muted"
-              onChange={(e) => handlePincodeInput(e)}
-            >
-              Enter an Indian pincode...
-            </Form.Text>
-          </Form.Group>
+      <Row className="mt-5">
+        <Col></Col>
+        <Col xs={8}>
+          <Form className="d-flex flex-column">
+            <Form.Group controlId="formBasicEmail">
+              <Form.Control
+                type="text"
+                placeholder="Enter an Indian pincode..."
+                onChange={(e) => handlePincodeInput(e)}
+                className="mb-5 w-10rem"
+              />
+            </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </Col>
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={handleSubmit}
+              className="w-10rem align-self-center"
+            >
+              Submit
+            </Button>
+          </Form>
+        </Col>
+        <Col></Col>
+      </Row>
     </Container>
   );
 };
