@@ -1,15 +1,14 @@
-import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import app_logo from "../images/logo.png";
 
 const MyNavbar = () => {
   return (
-    <Container
-      fluid
-      style={{ backgroundColor: "#0CB8CF" }}
-      className="h-10"
-    >
+    <Container fluid style={{ backgroundColor: "#0CB8CF" }} className="h-10">
       <Row className="d-flex flex-row  align-items-center w-100 h-100">
-        <Col xs={1} className="d-flex flex-row  align-items-center justify-content-center">
+        <Col
+          xs={1}
+          className="d-flex flex-row  align-items-center justify-content-center"
+        >
           <img
             alt="Covid Vaccine Tracker"
             src={app_logo}
