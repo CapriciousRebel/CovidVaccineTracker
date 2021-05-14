@@ -5,3 +5,7 @@ export const getCurrentDate = () => {
   var yyyy = today.getFullYear();
   return dd + "-" + mm + "-" + yyyy;
 };
+
+export function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

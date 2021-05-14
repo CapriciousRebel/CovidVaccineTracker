@@ -16,6 +16,14 @@ body {
   height: 100%;
 }
 
+.w-5rem {
+  width: 2rem;
+}
+
 .w-10rem {
   width: 10rem;
+}
+
+.w-20rem {
+  width: 20rem;
 }
