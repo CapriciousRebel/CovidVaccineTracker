@@ -3,7 +3,7 @@ import logo192 from "../images/logo192.png";
 
 const MyNavbar = () => {
   return (
-    <Container fluid style={{ backgroundColor: "#0CB8CF" }} className="h-10">
+    <Container style={{ backgroundColor: "#0CB8CF" }} className="h-10">
       <Row className="d-flex align-items-center justify-content-center h-100">
         <Col
           xs={3}
@@ -18,7 +18,7 @@ const MyNavbar = () => {
           />
         </Col>
         <Col xs={9}>
-          <h3>Covid Vaccine Tracker</h3>
+          <h2>Covid Vaccine Tracker</h2>
         </Col>
       </Row>
     </Container>
