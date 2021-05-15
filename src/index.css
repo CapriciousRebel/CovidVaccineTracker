@@ -17,11 +17,15 @@ body {
 }
 
 .w-5rem {
-  width: 2rem;
+  width: 20px;
 }
 
 .w-10rem {
   min-width: 10rem;
+}
+
+.w-15rem {
+  width: 12rem;
 }
 
 .w-20rem {
