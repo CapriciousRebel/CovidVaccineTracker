@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Form, Button, Spinner } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import { getCenterByPincode } from "../apis/Api.js";
+import useSound from "use-sound";
+import notificationSound from "../sounds/notification.mp3";
 
 export const Input = (props) => {
   const [pincodeInput, setPincodeInput] = useState(""); // Pincode set as the user types
   const [pincodeCurrent, setPincodeCurrent] = useState(""); // Pincode after user presses submit
+  const [playNotification] = useSound(notificationSound);
   const [currentInterval, setCurrentInterval] = useState(null); // The current async api call loop
 
   /**
@@ -19,7 +22,6 @@ export const Input = (props) => {
         let availableSessions = [];
 
         centers.data.centers.forEach((center) => {
-          console.log(center);
           center.sessions.forEach((session) => {
             if (session.available_capacity !== 0) {
               if (
@@ -39,7 +41,12 @@ export const Input = (props) => {
             }
           });
         });
-        props.setAvailableSessions(availableSessions);
+        if (availableSessions.length !== 0) {
+          playNotification();
+          props.setAvailableSessions(availableSessions);
+        } else {
+          props.setAvailableSessions(null);
+        }
       })
       .catch((error) => {
         console.log("Error while fetching data for pincode: ", error);
