@@ -24,7 +24,7 @@ export const Centers = (props) => {
 
     props.fetchedCenters.forEach((center) => {
       center.sessions.forEach((session) => {
-        if (session.available_capacity !== 0 || true) {
+        if (session.available_capacity !== 0) {
           if (
             isPriceRight(center.fee_type) &&
             isVaccineRight(session.vaccine) &&
@@ -56,7 +56,7 @@ export const Centers = (props) => {
         <Col>Capacity</Col>
         <Col>Date</Col>
       </Row>
-      {props.fetchedCenters ? (
+      {props.fetchedCenters && getAvailableSessions().length !== 0 ? (
         getAvailableSessions().map((session, index) => (
           <Center
             key={index}
@@ -66,7 +66,10 @@ export const Centers = (props) => {
           />
         ))
       ) : (
-        <h2>bye</h2>
+        <h3 className="m-0">
+          No slots available right now satisfying the requirements, you'll be
+          notified when slots are found...
+        </h3>
       )}
     </>
   );

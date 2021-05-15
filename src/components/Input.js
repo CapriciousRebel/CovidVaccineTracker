@@ -13,9 +13,19 @@ export const Input = (props) => {
    */
   const fetchCenters = async () => {
     console.log("requesting: ", pincodeInput);
-    let centers = await getCenterByPincode(pincodeInput);
-    centers = centers.data.centers;
-    props.setFetchedCenters(centers);
+    getCenterByPincode(pincodeInput)
+      .then((centers) => {
+        centers = centers.data.centers;
+        if (centers.length !== 0) {
+          props.setFetchedCenters(centers);
+        } else {
+          props.setFetchedCenters(null);
+        }
+      })
+      .catch((error) => {
+        console.log("Error while fetching data for pincode: ", error);
+        props.setFetchedCenters(null);
+      });
   };
 
   /**
