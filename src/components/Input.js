@@ -31,16 +31,6 @@ export const Input = (props) => {
     setPincodeInput(e.target.value);
   };
 
-  const centerAvailable = () => {
-    let available = true;
-    centers.forEach((center) => {});
-    return available;
-  };
-
-  const satisfiesCriteria = (center) => {
-    return true;
-  };
-
   return (
     <Container className="d-flex flex-column align-items-center">
       <Row className="w-15rem pt-5">
@@ -74,25 +64,6 @@ export const Input = (props) => {
           </Col>
         </Row>
       ) : null}
-
-      {submitOnce && centers.length !== 0 && centerAvailable()
-        ? centers.map(
-            (center, index) =>
-              satisfiesCriteria(center) && (
-                <Row className="border-bottom" key={index}>
-                  <Col>{center.name}</Col>
-                  <Col>
-                    Capacity = {center.sessions[0].available_capacity}
-                  </Col>{" "}
-                </Row>
-              )
-          )
-        : submitOnce && (
-            <h3 className="m-0">
-              No centers available right now satisfying the requirements, you'll
-              be notified when slots are found...
-            </h3>
-          )}
     </Container>
   );
 };

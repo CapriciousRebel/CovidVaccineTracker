@@ -3,14 +3,16 @@ import React, { useEffect, useState } from "react";
 import { delay } from "../utils/utils.js";
 import Switch from "@material-ui/core/Switch";
 
-import { Menu } from "./Menu.js";
+import { Menu } from "./Menu";
 import { Input } from "./Input";
+import { Centers } from "./Centers";
 
 const Landing = () => {
   return (
     <Container fluid>
       <Menu />
       <Input />
+      <Centers />
     </Container>
   );
 };
