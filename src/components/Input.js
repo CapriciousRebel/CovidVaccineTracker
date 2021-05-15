@@ -40,26 +40,30 @@ export const Input = (props) => {
 
   return (
     <Container className="d-flex flex-column align-items-center">
-      <Row className="w-15rem pt-5">
-        <TextField
-          id="standard-basic"
-          label="Enter an Indian pincode..."
-          onChange={(e) => handlePincodeInput(e)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSubmit();
-            }
-          }}
-        />
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={handleSubmit}
-          className="mt-5 w-5rem align-self-center"
-        >
-          Submit
-        </Button>
-      </Row>
+      <Col className="w-15rem pt-5">
+        <Row>
+          <TextField
+            id="standard-basic"
+            label="Enter an Indian pincode..."
+            onChange={(e) => handlePincodeInput(e)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
+            }}
+          />
+        </Row>
+        <Row className="mt-5 w-10rem">
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={handleSubmit}
+            className=" align-self-center"
+          >
+            Submit
+          </Button>
+        </Row>
+      </Col>
 
       {props.submitOnce && pincodeInput ? (
         <Row className="d-flex align-items-start my-5 py-2 border-top border-bottom">
