@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Form, Button, Spinner } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import { getCenterByPincode } from "../apis/Api.js";
+import useSound from "use-sound";
+import notificationSound from "../sounds/notification.mp3";
 
 export const Input = (props) => {
   const [pincodeInput, setPincodeInput] = useState(""); // Pincode set as the user types
   const [pincodeCurrent, setPincodeCurrent] = useState(""); // Pincode after user presses submit
+  const [playNotification] = useSound(notificationSound);
   const [currentInterval, setCurrentInterval] = useState(null); // The current async api call loop
 
   /**
@@ -13,9 +16,42 @@ export const Input = (props) => {
    */
   const fetchCenters = async () => {
     console.log("requesting: ", pincodeInput);
-    let centers = await getCenterByPincode(pincodeInput);
-    centers = centers.data.centers;
-    props.setFetchedCenters(centers);
+
+    getCenterByPincode(pincodeInput)
+      .then((centers) => {
+        let availableSessions = [];
+
+        centers.data.centers.forEach((center) => {
+          center.sessions.forEach((session) => {
+            if (session.available_capacity !== 0) {
+              if (
+                isPriceRight(center.fee_type) &&
+                isVaccineRight(session.vaccine) &&
+                isAgeRight(session.min_age_limit)
+              ) {
+                availableSessions.push({
+                  name: center.name,
+                  available_capacity: session.available_capacity,
+                  date:
+                    session.date.split("-")[0] +
+                    "/" +
+                    session.date.split("-")[1],
+                });
+              }
+            }
+          });
+        });
+        if (availableSessions.length !== 0) {
+          playNotification();
+          props.setAvailableSessions(availableSessions);
+        } else {
+          props.setAvailableSessions(null);
+        }
+      })
+      .catch((error) => {
+        console.log("Error while fetching data for pincode: ", error);
+        props.setAvailableSessions(null);
+      });
   };
 
   /**
@@ -38,28 +74,46 @@ export const Input = (props) => {
     setPincodeInput(e.target.value);
   };
 
+  const isVaccineRight = (vaccine) => {
+    return props.filterType[
+      vaccine.charAt(0) + vaccine.substring(1).toLowerCase()
+    ];
+  };
+
+  const isAgeRight = (age) => {
+    return props.filterType[age + "+"];
+  };
+
+  const isPriceRight = (price) => {
+    return props.filterType[price];
+  };
+
   return (
-    <Container className="d-flex flex-column align-items-center">
-      <Row className="w-15rem pt-5">
-        <TextField
-          id="standard-basic"
-          label="Enter an Indian pincode..."
-          onChange={(e) => handlePincodeInput(e)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSubmit();
-            }
-          }}
-        />
-        <Button
-          variant="primary"
-          type="submit"
-          onClick={handleSubmit}
-          className="mt-5 w-5rem align-self-center"
-        >
-          Submit
-        </Button>
-      </Row>
+    <Container className="d-flex flex-column align-items-center ">
+      <Col className="w-15rem pt-5">
+        <Row>
+          <TextField
+            id="standard-basic"
+            label="Enter an Indian pincode..."
+            onChange={(e) => handlePincodeInput(e)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
+            }}
+          />
+        </Row>
+        <Row className="mt-5 w-10rem">
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={handleSubmit}
+            className=" align-self-center"
+          >
+            Submit
+          </Button>
+        </Row>
+      </Col>
 
       {props.submitOnce && pincodeInput ? (
         <Row className="d-flex align-items-start my-5 py-2 border-top border-bottom">

@@ -12,7 +12,9 @@ export const Menu = (props) => {
   return (
     <>
       <Container
-        className="d-flex align-items-center justify-content-center border-bottom"
+        className={
+          showFilters ? "d-flex align-items-center justify-content-center" : "d-flex align-items-center justify-content-center border-bottom"
+        }
         onClick={switchMenu}
       >
         <h5 className="m-0">Filters</h5>
