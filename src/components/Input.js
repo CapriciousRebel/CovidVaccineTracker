@@ -4,21 +4,25 @@ import TextField from "@material-ui/core/TextField";
 import { getCenterByPincode } from "../apis/Api.js";
 
 export const Input = (props) => {
-  const [pincodeInput, setPincodeInput] = useState("");
-  const [pincodeCurrent, setPincodeCurrent] = useState("");
-  const [submitOnce, setSubmitOnce] = useState(false);
-  const [centers, setCenters] = useState([]);
-  const [currentInterval, setCurrentInterval] = useState(null);
+  const [pincodeInput, setPincodeInput] = useState(""); // Pincode set as the user types
+  const [pincodeCurrent, setPincodeCurrent] = useState(""); // Pincode after user presses submit
+  const [currentInterval, setCurrentInterval] = useState(null); // The current async api call loop
 
+  /**
+   * Makes the API call and fetches the Centers and stores in state
+   */
   const fetchCenters = async () => {
     console.log("requesting: ", pincodeInput);
     let centers = await getCenterByPincode(pincodeInput);
     centers = centers.data.centers;
-    setCenters(centers);
+    props.setFetchedCenters(centers);
   };
 
+  /**
+   * Handles the Submit action for the pincode Input
+   */
   const handleSubmit = async () => {
-    setSubmitOnce(true);
+    props.setSubmitOnce(true);
     setPincodeCurrent(pincodeInput);
     fetchCenters();
     if (currentInterval) {
@@ -27,6 +31,9 @@ export const Input = (props) => {
     setCurrentInterval(setInterval(fetchCenters, 5000));
   };
 
+  /**
+   * Handles the pincode input event
+   */
   const handlePincodeInput = (e) => {
     setPincodeInput(e.target.value);
   };
@@ -54,7 +61,7 @@ export const Input = (props) => {
         </Button>
       </Row>
 
-      {submitOnce ? (
+      {props.submitOnce && pincodeInput ? (
         <Row className="d-flex align-items-start my-5 py-2 border-top border-bottom">
           <Col xs={1}>
             <Spinner size="sm" animation="grow" />

@@ -4,18 +4,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { Filters } from "./Filters.js";
 
-export const Menu = () => {
+export const Menu = (props) => {
   const [showFilters, setShowFilters] = useState(false);
-
-  const [type, setType] = useState({
-    Covishield: false,
-    Covaxin: false,
-    Free: false,
-    Paid: false,
-    "18+": false,
-    "45+": false,
-  });
-
   const switchMenu = () => {
     setShowFilters(!showFilters);
   };
@@ -32,7 +22,9 @@ export const Menu = () => {
           <ExpandMoreIcon fontSize="large" />
         )}
       </Container>
-      {showFilters ? <Filters type={type} setType={setType} /> : null}
+      {showFilters ? (
+        <Filters type={props.filterType} setType={props.setFilterType} />
+      ) : null}
     </>
   );
 };
