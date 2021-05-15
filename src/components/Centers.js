@@ -10,13 +10,26 @@ export const Centers = (props) => {
       vaccine.charAt(0) + vaccine.substring(1).toLowerCase()
     ];
   };
+
+  const isAgeRight = (age) => {
+    return props.filterType[age + "+"];
+  };
+
+  const isPriceRight = (price) => {
+    return props.filterType[price];
+  };
+
   const getAvailableSessions = () => {
     let availableSessions = [];
 
     props.fetchedCenters.forEach((center) => {
       center.sessions.forEach((session) => {
         if (session.available_capacity !== 0 || true) {
-          if (isVaccineRight(session.vaccine)) {
+          if (
+            isPriceRight(center.fee_type) &&
+            isVaccineRight(session.vaccine) &&
+            isAgeRight(session.min_age_limit)
+          ) {
             availableSessions.push({
               name: center.name,
               available_capacity: session.available_capacity,
