@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/CovidVaccineTracker/static/css/main.0ebaf2c2.chunk.css",
-    "main.js": "/CovidVaccineTracker/static/js/main.45c20888.chunk.js",
-    "main.js.map": "/CovidVaccineTracker/static/js/main.45c20888.chunk.js.map",
+    "main.js": "/CovidVaccineTracker/static/js/main.7120177a.chunk.js",
+    "main.js.map": "/CovidVaccineTracker/static/js/main.7120177a.chunk.js.map",
     "runtime-main.js": "/CovidVaccineTracker/static/js/runtime-main.b24aebcd.js",
     "runtime-main.js.map": "/CovidVaccineTracker/static/js/runtime-main.b24aebcd.js.map",
     "static/css/2.800be05e.chunk.css": "/CovidVaccineTracker/static/css/2.800be05e.chunk.css",
-    "static/js/2.8e32d27e.chunk.js": "/CovidVaccineTracker/static/js/2.8e32d27e.chunk.js",
-    "static/js/2.8e32d27e.chunk.js.map": "/CovidVaccineTracker/static/js/2.8e32d27e.chunk.js.map",
+    "static/js/2.a56144d5.chunk.js": "/CovidVaccineTracker/static/js/2.a56144d5.chunk.js",
+    "static/js/2.a56144d5.chunk.js.map": "/CovidVaccineTracker/static/js/2.a56144d5.chunk.js.map",
     "static/js/3.6f9404a5.chunk.js": "/CovidVaccineTracker/static/js/3.6f9404a5.chunk.js",
     "static/js/3.6f9404a5.chunk.js.map": "/CovidVaccineTracker/static/js/3.6f9404a5.chunk.js.map",
     "index.html": "/CovidVaccineTracker/index.html",
     "static/css/2.800be05e.chunk.css.map": "/CovidVaccineTracker/static/css/2.800be05e.chunk.css.map",
     "static/css/main.0ebaf2c2.chunk.css.map": "/CovidVaccineTracker/static/css/main.0ebaf2c2.chunk.css.map",
-    "static/js/2.8e32d27e.chunk.js.LICENSE.txt": "/CovidVaccineTracker/static/js/2.8e32d27e.chunk.js.LICENSE.txt",
+    "static/js/2.a56144d5.chunk.js.LICENSE.txt": "/CovidVaccineTracker/static/js/2.a56144d5.chunk.js.LICENSE.txt",
     "static/js/3.6f9404a5.chunk.js.LICENSE.txt": "/CovidVaccineTracker/static/js/3.6f9404a5.chunk.js.LICENSE.txt",
     "static/media/logo192.5c9b380d.png": "/CovidVaccineTracker/static/media/logo192.5c9b380d.png",
     "static/media/notification.599e0ca5.mp3": "/CovidVaccineTracker/static/media/notification.599e0ca5.mp3"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.b24aebcd.js",
     "static/css/2.800be05e.chunk.css",
-    "static/js/2.8e32d27e.chunk.js",
+    "static/js/2.a56144d5.chunk.js",
     "static/css/main.0ebaf2c2.chunk.css",
-    "static/js/main.45c20888.chunk.js"
+    "static/js/main.7120177a.chunk.js"
   ]
 }
