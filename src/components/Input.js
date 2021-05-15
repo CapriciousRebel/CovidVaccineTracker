@@ -13,18 +13,37 @@ export const Input = (props) => {
    */
   const fetchCenters = async () => {
     console.log("requesting: ", pincodeInput);
+
     getCenterByPincode(pincodeInput)
       .then((centers) => {
-        centers = centers.data.centers;
-        if (centers.length !== 0) {
-          props.setFetchedCenters(centers);
-        } else {
-          props.setFetchedCenters(null);
-        }
+        let availableSessions = [];
+
+        centers.data.centers.forEach((center) => {
+          console.log(center);
+          center.sessions.forEach((session) => {
+            if (session.available_capacity !== 0) {
+              if (
+                isPriceRight(center.fee_type) &&
+                isVaccineRight(session.vaccine) &&
+                isAgeRight(session.min_age_limit)
+              ) {
+                availableSessions.push({
+                  name: center.name,
+                  available_capacity: session.available_capacity,
+                  date:
+                    session.date.split("-")[0] +
+                    "/" +
+                    session.date.split("-")[1],
+                });
+              }
+            }
+          });
+        });
+        props.setAvailableSessions(availableSessions);
       })
       .catch((error) => {
         console.log("Error while fetching data for pincode: ", error);
-        props.setFetchedCenters(null);
+        props.setAvailableSessions(null);
       });
   };
 
@@ -46,6 +65,20 @@ export const Input = (props) => {
    */
   const handlePincodeInput = (e) => {
     setPincodeInput(e.target.value);
+  };
+
+  const isVaccineRight = (vaccine) => {
+    return props.filterType[
+      vaccine.charAt(0) + vaccine.substring(1).toLowerCase()
+    ];
+  };
+
+  const isAgeRight = (age) => {
+    return props.filterType[age + "+"];
+  };
+
+  const isPriceRight = (price) => {
+    return props.filterType[price];
   };
 
   return (

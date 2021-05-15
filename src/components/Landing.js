@@ -1,5 +1,6 @@
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
+import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import useSound from "use-sound";
 import { openInNewTab } from "../utils/utils";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import { Menu } from "./Menu";
@@ -7,8 +8,10 @@ import { Input } from "./Input";
 import { Centers } from "./Centers";
 import { Footer } from "./Footer";
 
+import notificationSound from "../sounds/notification.mp3";
+
 const Landing = () => {
-  const [fetchedCenters, setFetchedCenters] = useState([]);
+  const [play] = useSound(notificationSound);
   const [availableSessions, setAvailableSessions] = useState([]);
   const [submitOnce, setSubmitOnce] = useState(false);
   const [filterType, setFilterType] = useState({
@@ -21,10 +24,6 @@ const Landing = () => {
   });
 
   useEffect(() => {
-    console.log("fetchedCenters: ", fetchedCenters);
-  }, [fetchedCenters]);
-
-  useEffect(() => {
     console.log("availableSessions: ", availableSessions);
   }, [availableSessions]);
 
@@ -32,14 +31,14 @@ const Landing = () => {
     <Container fluid>
       <Menu filterType={filterType} setFilterType={setFilterType} />
       <Input
-        fetchedCenters={fetchedCenters}
-        setFetchedCenters={setFetchedCenters}
+        availableSessions={availableSessions}
+        setAvailableSessions={setAvailableSessions}
+        filterType={filterType}
         submitOnce={submitOnce}
         setSubmitOnce={setSubmitOnce}
       />
       {submitOnce ? (
         <Centers
-          fetchedCenters={fetchedCenters}
           filterType={filterType}
           availableSessions={availableSessions}
           setAvailableSessions={setAvailableSessions}
