@@ -49,7 +49,7 @@ export const Input = (props) => {
   };
 
   return (
-    <Container className="d-flex flex-column align-items-center">
+    <Container className="d-flex flex-column align-items-center ">
       <Col className="w-15rem pt-5">
         <Row>
           <TextField

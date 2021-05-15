@@ -5,7 +5,7 @@ import { TypeFilter } from "./TypeFilter.js";
 export const Filters = (props) => {
   return (
     <Container fluid>
-      <Row className="border-bottom">
+      <Row className="border-bottom border-top mx-3">
         <TypeFilter type={props.type} setType={props.setType} name="Covaxin" />
         <TypeFilter
           type={props.type}

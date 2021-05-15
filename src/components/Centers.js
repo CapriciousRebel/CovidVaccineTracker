@@ -73,21 +73,4 @@ export const Centers = (props) => {
       )}
     </>
   );
-
-  //   const displayCenters = () => {
-  //     let availableCenters = getAvailableCenters();
-  //     console.log(availableCenters);
-  //     if (availableCenters.length !== 0) {
-  //       return submitOnce && centers.length !== 0
-  //         ? centers.map((center, index) =>
-  //             center.sessions.map((session) => <Center />)
-  //           )
-  //         : submitOnce && (
-  //             <h3 className="m-0">
-  //               No centers available right now satisfying the requirements, you'll
-  //               be notified when slots are found...
-  //             </h3>
-  //           );
-  //     }
-  //   };
 };

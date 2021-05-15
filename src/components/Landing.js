@@ -1,9 +1,11 @@
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-
+import { openInNewTab } from "../utils/utils";
+import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import { Menu } from "./Menu";
 import { Input } from "./Input";
 import { Centers } from "./Centers";
+import { Footer } from "./Footer";
 
 const Landing = () => {
   const [fetchedCenters, setFetchedCenters] = useState([]);
@@ -43,6 +45,21 @@ const Landing = () => {
           setAvailableSessions={setAvailableSessions}
         />
       ) : null}
+      <Footer>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            Made with ❤️ by <pre> </pre>
+            <span
+              onClick={() => {
+                openInNewTab("https://github.com/CapriciousRebel");
+              }}
+              className="mr-5"
+            >
+              CapriciousRebel
+            </span>
+          </Col>
+        </Row>
+      </Footer>
     </Container>
   );
 };
