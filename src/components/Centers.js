@@ -5,17 +5,25 @@ import { Container, Col, Row, Form, Button, Spinner } from "react-bootstrap";
 import { Center } from "./Center";
 
 export const Centers = (props) => {
+  const isVaccineRight = (vaccine) => {
+    return props.filterType[
+      vaccine.charAt(0) + vaccine.substring(1).toLowerCase()
+    ];
+  };
   const getAvailableSessions = () => {
     let availableSessions = [];
 
     props.fetchedCenters.forEach((center) => {
       center.sessions.forEach((session) => {
-        if (session.available_capacity !== 0) {
-          availableSessions.push({
-            name: center.name,
-            available_capacity: session.available_capacity,
-            date: session.date.split("-")[0] + "/" + session.date.split("-")[1],
-          });
+        if (session.available_capacity !== 0 || true) {
+          if (isVaccineRight(session.vaccine)) {
+            availableSessions.push({
+              name: center.name,
+              available_capacity: session.available_capacity,
+              date:
+                session.date.split("-")[0] + "/" + session.date.split("-")[1],
+            });
+          }
         }
       });
     });
@@ -36,8 +44,9 @@ export const Centers = (props) => {
         <Col>Date</Col>
       </Row>
       {props.fetchedCenters ? (
-        getAvailableSessions().map((session) => (
+        getAvailableSessions().map((session, index) => (
           <Center
+            key={index}
             name={session.name}
             available_capacity={session.available_capacity}
             date={session.date}

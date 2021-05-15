@@ -8,7 +8,9 @@ export const Center = (props) => {
       className="border-bottom"
       onClick={() => openInNewTab("https://www.cowin.gov.in/home")}
     >
-      <Col xs={6}>{props.name}</Col>
+      <Col xs={6} className="border-right">
+        {props.name}
+      </Col>
       <Col>{props.available_capacity}</Col>
       <Col>{props.date}</Col>
     </Row>

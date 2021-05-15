@@ -10,12 +10,12 @@ const Landing = () => {
   const [availableSessions, setAvailableSessions] = useState([]);
   const [submitOnce, setSubmitOnce] = useState(false);
   const [filterType, setFilterType] = useState({
-    Covishield: false,
-    Covaxin: false,
-    Free: false,
-    Paid: false,
-    "18+": false,
-    "45+": false,
+    Covishield: true,
+    Covaxin: true,
+    Free: true,
+    Paid: true,
+    "18+": true,
+    "45+": true,
   });
 
   useEffect(() => {
