@@ -1,3 +1,6 @@
+import { Col, Row } from "react-bootstrap";
+import { openInNewTab } from "../utils/utils";
+
 var style = {
   backgroundColor: "#F8F8F8",
   borderTop: "1px solid #E7E7E7",
@@ -17,11 +20,25 @@ var phantom = {
   width: "100%",
 };
 
-export const Footer = ({ children }) => {
+export const Footer = () => {
   return (
     <div>
       <div style={phantom} />
-      <div style={style}>{children}</div>
+      <div style={style}>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            Made with ❤️ by <pre> </pre>
+            <span
+              onClick={() => {
+                openInNewTab("https://github.com/CapriciousRebel");
+              }}
+              className="mr-5"
+            >
+              CapriciousRebel
+            </span>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };
