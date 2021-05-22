@@ -12,15 +12,35 @@ export const Input = (props) => {
   const [currentInterval, setCurrentInterval] = useState(null); // The current async api call loop
 
   /**
+   * returns true if the vaccine type returned by the api matches the one chosen by the user
+   */
+  const isVaccineRight = (vaccine) => {
+    console.log("is vaccine right: ", props.filterType);
+    return props.filterType[
+      vaccine.charAt(0) + vaccine.substring(1).toLowerCase()
+    ];
+  };
+  /**
+   * returns true if the age returned by the api matches the one chosen by the user
+   */
+  const isAgeRight = (age) => {
+    return props.filterType[age + "+"];
+  };
+  /**
+   * returns true if the price returned by the api matches the one chosen by the user
+   */
+  const isPriceRight = (price) => {
+    return props.filterType[price];
+  };
+
+  /**
    * Makes the API call and fetches the Centers and stores in state
    */
   const fetchCenters = async () => {
-    console.log("requesting: ", pincodeInput);
-
+    console.log("fetching...");
     getCenterByPincode(pincodeInput)
       .then((centers) => {
         let availableSessions = [];
-
         centers.data.centers.forEach((center) => {
           center.sessions.forEach((session) => {
             if (session.available_capacity !== 0) {
@@ -41,6 +61,7 @@ export const Input = (props) => {
             }
           });
         });
+        //console.log("available after fetch and filter: ", availableSessions);
         if (availableSessions.length !== 0) {
           playNotification();
           props.setAvailableSessions(availableSessions);
@@ -72,20 +93,6 @@ export const Input = (props) => {
    */
   const handlePincodeInput = (e) => {
     setPincodeInput(e.target.value);
-  };
-
-  const isVaccineRight = (vaccine) => {
-    return props.filterType[
-      vaccine.charAt(0) + vaccine.substring(1).toLowerCase()
-    ];
-  };
-
-  const isAgeRight = (age) => {
-    return props.filterType[age + "+"];
-  };
-
-  const isPriceRight = (price) => {
-    return props.filterType[price];
   };
 
   return (

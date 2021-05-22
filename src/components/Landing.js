@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
-import { FilterMenu } from "./FilterMenu";
+import { FilterMenu } from "./filters/FilterMenu";
 import { Input } from "./Input";
-import { Centers } from "./Centers";
-import { Footer } from "./Footer";
+import { CenterList } from "./centerlist/CenterList";
+import { Footer } from "./footer/Footer";
 
 const Landing = () => {
   const [availableSessions, setAvailableSessions] = useState([]); // list of all available sessions
@@ -17,6 +17,14 @@ const Landing = () => {
     "45+": true,
   }); // Filters
 
+  useEffect(() => {
+    console.log("filterType: ", filterType);
+  }, [filterType]);
+
+  useEffect(() => {
+    console.log("availableSessions: ", availableSessions);
+  }, [availableSessions]);
+
   return (
     <Container fluid>
       <FilterMenu filterType={filterType} setFilterType={setFilterType} />
@@ -28,7 +36,7 @@ const Landing = () => {
         setSubmitOnce={setSubmitOnce}
       />
       {submitOnce ? (
-        <Centers
+        <CenterList
           filterType={filterType}
           availableSessions={availableSessions}
           setAvailableSessions={setAvailableSessions}

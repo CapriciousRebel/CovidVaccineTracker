@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import { openInNewTab } from "../utils/utils";
+import { openInNewTab } from "../../utils/utils";
 
 var style = {
   backgroundColor: "#F8F8F8",

@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-
-import { Container, Col, Row, Form, Button, Spinner } from "react-bootstrap";
-
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 import { Center } from "./Center";
 
-export const Centers = (props) => {
+export const CenterList = (props) => {
   return (
     <>
       <Row className="border-bottom">

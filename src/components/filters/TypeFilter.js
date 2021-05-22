@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Switch from "@material-ui/core/Switch";
 
 export const TypeFilter = (props) => {

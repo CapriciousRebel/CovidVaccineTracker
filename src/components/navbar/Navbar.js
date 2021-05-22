@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
-import logo192 from "../images/logo192.png";
-import { openInNewTab } from "../utils/utils";
+import logo192 from "../../images/logo192.png";
+import { openInNewTab } from "../../utils/utils";
 import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 
 const MyNavbar = () => {

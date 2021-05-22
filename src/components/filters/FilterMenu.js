@@ -1,5 +1,5 @@
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import { Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { TypeFilter } from "./TypeFilter.js";

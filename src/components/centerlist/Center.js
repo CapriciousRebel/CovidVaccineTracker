@@ -1,6 +1,5 @@
-import { Container, Col, Row, Form, Button, Spinner } from "react-bootstrap";
-import LaunchIcon from "@material-ui/icons/Launch";
-import { openInNewTab } from "../utils/utils";
+import { Col, Row } from "react-bootstrap";
+import { openInNewTab } from "../../utils/utils";
 
 export const Center = (props) => {
   return (
